@@ -100,7 +100,7 @@ export default class Bot
         if ((cardBuffer != undefined && cardBuffer.length > 1000000) || cards[3] == "None")
         {
           console.log("file too big or no image supplied");
-          var cardResponse = await axios.get("https://www.sportsnet.ca/wp-content/uploads/2020/03/1704050871_6140634293001_6140631802001-vs.jpg", { responseType: 'arraybuffer'}); 
+          var cardResponse = await axios.get("https://cdn1.thecomeback.com/wp-content/uploads/sites/94/2017/09/Pierre-LeBrun-TSN-832x447.png", { responseType: 'arraybuffer'}); 
           cardBuffer = Buffer.from(cardResponse.data, "utf-8");
         }
         const cardUpload = await this.#agent.uploadBlob(cardBuffer, {encoding: "image/png"});

@@ -23,7 +23,7 @@ export default async function getPostText()
 	var sportsBotsReg = new RegExp("@sportsbots.xyz", "g");
 	var invalidLinkReg = new RegExp("\\S*(\\.com|\\.ca|\\.org|\\.net)\\S*(…|\\.\\.\\.)", "g");
 	var logoReg = new RegExp("&nbsp;", "g"); // A regex to deal with &nbsp;. Should be deleted.
-	var awaitTweet = await mastodon.getStatuses("109723585252506086", {'limit':limitVal}); //Use the Mastodon API to get a specified number of recent posts from the Mastodon API.
+	var awaitTweet = await mastodon.getStatuses("109723560254121614", {'limit':limitVal}); //Use the Mastodon API to get a specified number of recent posts from the Mastodon API.
 	var string = JSON.stringify(awaitTweet); // Convert the post into a JSON string.
 	var objJSON = JSON.parse(string)["json"]; // Convert the JSON string back to a JSON object. Kinda silly, but it doesn't work otherwise. 
 	var stringArr = []; // Initialize an empty array that we will store the regexed plaintexts in.
