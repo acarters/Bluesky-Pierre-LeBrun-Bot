@@ -17,6 +17,7 @@ export default async function getPostText()
 	var brReg = new RegExp("<br>", "g"); // A regex to deal with <br>. This should go to the next line, which we do via a line break. 
 	var quoteReg = new RegExp(`\\\\"`, "g"); // A regex to deal with \". This should be replaced with a " value with no \.
 	var andReg = new RegExp("&amp;", "g"); // A regex to deal with &amp;. This should be replaced with &.
+	var gtReg = new RegExp("&gt;", "g"); // A regex to deal with &gt;. This should be replaced with >.
 	var tagReg = new RegExp("<(:?[^>]+)>", "g"); // A general regex for HTML. Used to get the plaintext value of the mastodon post without tag notation.
 	var twitterReg = new RegExp("@twitter.com", "g"); // A regex to deal with @twitter.com. Should be deleted.
 	var canesReg = new RegExp("@Canes@sportsbots.xyz", "g"); // A regex to deal with Canes's @. Should be replaced with the bot's @.
@@ -82,7 +83,7 @@ export default async function getPostText()
 		var contentJSON = objJSON[i]["content"]; // Filter through all the values of the JSON object, to get just the content of post i. 
 		var contentString = JSON.stringify(contentJSON); // Convert the content of the post into a JSON string.
 		contentString = contentString.slice(1,-1); // Remove the quotation marks.
-		contentString = contentString.replace(logoReg, "").replace(twitterReg, "").replace(canesReg, "notcanes.bsky.social").replace(sportsBotsReg, "").replace(quoteReg, `"`).replace(andReg, "&").replace(pReg, "\n\n").replace(brReg, "\n").replace(tagReg, ""); //Use the ", &, <p>, and <br> regexes to apply appropriate formatting. Then use the general regex to remove the HTML formatting from the mastodon post. 
+		contentString = contentString.replace(logoReg, "").replace(twitterReg, "").replace(canesReg, "notcanes.bsky.social").replace(sportsBotsReg, "hi").replace(quoteReg, `"`).replace(gtReg, ">").replace(andReg, "&").replace(pReg, "\n\n").replace(brReg, "\n").replace(tagReg, ""); //Use the ", &, <p>, and <br> regexes to apply appropriate formatting. Then use the general regex to remove the HTML formatting from the mastodon post. 
 
 		if (objJSON[i]["card"] != null)
 		{
